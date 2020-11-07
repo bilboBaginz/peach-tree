@@ -1,0 +1,5 @@
+node_modules/
+package-lock.json
+build/assets/
+build/bundle.js
+build/bundle.js.LICENSE.txt
