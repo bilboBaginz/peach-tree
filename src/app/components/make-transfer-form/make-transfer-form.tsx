@@ -31,7 +31,10 @@ export const MakeTransferForm: React.FC = () => {
 
   const handleSubmitClick = () => {
     // validate form
-    if (amountIsNotValid(state?.transferAmount)) {
+    if (
+      amountIsNotValid(state?.transferAmount) ||
+      isOverDraftLimitReached(state?.balance, state?.transferAmount)
+    ) {
       return
     }
     if (fieldsAreMissing(state?.transferAmount, state?.transferAccount)) {
@@ -42,14 +45,9 @@ export const MakeTransferForm: React.FC = () => {
       })
       return
     }
-    if (isOverDraftLimitReached(state?.balance, state?.transferAmount)) {
-      return
-    }
 
     dispatch({
       type: ActionTypes.ON_FORM_VALID,
-      // transactions: [...state?.transactions, newTransaction],
-      // balance: state?.balance - newTransaction.transaction.amountCurrency.amount,
     })
   }
 
@@ -81,6 +79,11 @@ export const MakeTransferForm: React.FC = () => {
           empty={state?.missingAmount}
           invalidNumber={amountIsNotValid(state?.transferAmount)}
           value={state?.transferAmount}
+          customError={
+            isOverDraftLimitReached(state?.balance, state?.transferAmount)
+              ? " Too large"
+              : ""
+          }
         />
       </form>
       <ButtonContainer>
