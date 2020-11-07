@@ -6,6 +6,7 @@ import { ActionTypes } from "../../root/globalState/reducer"
 import { ButtonContainer } from "./make-transfer-form.styles"
 import {
   amountIsNotValid,
+  amountIsTooLarge,
   fieldsAreMissing,
   isOverDraftLimitReached,
 } from "./make-transfer-form.helpers"
@@ -33,7 +34,8 @@ export const MakeTransferForm: React.FC = () => {
     // validate form
     if (
       amountIsNotValid(state?.transferAmount) ||
-      isOverDraftLimitReached(state?.balance, state?.transferAmount)
+      isOverDraftLimitReached(state?.balance, state?.transferAmount) ||
+      amountIsTooLarge(state?.transferAmount)
     ) {
       return
     }
