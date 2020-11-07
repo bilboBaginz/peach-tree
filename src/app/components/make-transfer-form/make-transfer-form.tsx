@@ -81,11 +81,7 @@ export const MakeTransferForm: React.FC = () => {
           empty={state?.missingAmount}
           invalidNumber={amountIsNotValid(state?.transferAmount)}
           value={state?.transferAmount}
-          customError={
-            isOverDraftLimitReached(state?.balance, state?.transferAmount)
-              ? " Too large"
-              : ""
-          }
+          customError={amountIsTooLarge(state?.transferAmount) ? " Too large" : ""}
         />
       </form>
       <ButtonContainer>
