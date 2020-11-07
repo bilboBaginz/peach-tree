@@ -61,7 +61,7 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     if (storedBalance === "0") {
-      updateBalance(InitialBalance)
+      updateBalance(InitialBalance.toString())
     } else {
       dispatch({
         type: ActionTypes.ON_BALANCE_UPDATE,
