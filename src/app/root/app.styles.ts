@@ -50,7 +50,7 @@ export const resetButtonStyle: CSSObject = {
 }
 
 export const ResetButtonWrapper = styled.div`
-  @media ${device.laptop} {
-    display: none;
-  }
+  // @media ${device.laptop} {
+  //   display: none;
+  // }
 `
