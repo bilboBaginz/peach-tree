@@ -30,7 +30,7 @@ export const App: React.FC = () => {
     "transactions",
     []
   )
-  const [storedBalance, updateBalance] = useLocalStorage("balance", 0)
+  const [storedBalance, updateBalance] = useLocalStorage("balance", "0")
 
   const clearLocalStorage = () => {
     updateTransactions([])
@@ -60,7 +60,7 @@ export const App: React.FC = () => {
   }, [storedTransactions])
 
   useEffect(() => {
-    if (storedBalance === 0) {
+    if (storedBalance === "0") {
       updateBalance(InitialBalance)
     } else {
       dispatch({
@@ -79,7 +79,7 @@ export const App: React.FC = () => {
   }, [state?.transactions])
 
   useEffect(() => {
-    updateBalance(state?.balance)
+    updateBalance(state?.balance.toString())
   }, [state?.balance])
 
   const onUserHidesPreview = () => {
