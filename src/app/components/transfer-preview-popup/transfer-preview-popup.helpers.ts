@@ -5,9 +5,7 @@ export const checkIfMerchangeExists = (
   acountName: string,
   merchantsInventory: Array<SavedMerchant>
 ): SavedMerchant | undefined =>
-  merchantsInventory.find(
-    (merchant) => merchant.merchantName.toLowerCase() === acountName.toLowerCase()
-  )
+  merchantsInventory.find((merchant) => merchant.merchantName === acountName)
 
 export const createNewMerchant = (account: string): SavedMerchant => ({
   merchantName: account,
