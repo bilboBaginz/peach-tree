@@ -87,8 +87,6 @@ export const App: React.FC = () => {
     })
   }
 
-  console.log(state)
-
   return (
     <>
       <GlobalStyle />
