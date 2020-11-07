@@ -5,7 +5,7 @@ import { Colors } from "../../packages/theme"
 export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    min-width: 18.75em;
+    min-width: 21em;
     font-family: 'Kanit', sans-serif;
     input, textarea, select { font-family:inherit; }
     overflow-y: scroll;
@@ -23,10 +23,7 @@ export const PageDivider = styled.div`
 
 export const Logo = styled.img`
   margin: 0.9375em 0 0 6.5em;
-  @media ${device.laptop} {
-    margin-left: 1em;
-  }
-  @media ${device.mobileL} {
+  @media ${device.tablet} {
     margin: 1.6em 0 0 1em;
     max-width: 15.625em;
   }
@@ -51,3 +48,9 @@ export const resetButtonStyle: CSSObject = {
   right: "24px",
   padding: "0.5em 1em",
 }
+
+export const ResetButtonWrapper = styled.div`
+  @media ${device.laptop} {
+    display: none;
+  }
+`

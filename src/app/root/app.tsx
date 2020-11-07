@@ -7,6 +7,7 @@ import {
   PageHeader,
   CardsContainer,
   resetButtonStyle,
+  ResetButtonWrapper,
 } from "./app.styles"
 import { Card } from "../../packages/ui-components/card"
 import { MakeTransferForm } from "../components/make-transfer-form"
@@ -92,13 +93,15 @@ export const App: React.FC = () => {
       <GlobalStyle />
       <PageHeader>
         <Logo src={"assets/logo.jpg"} />
-        <Button
-          variation={ButtonVariations.primary}
-          onClick={clearLocalStorage}
-          style={resetButtonStyle}
-        >
-          {"RESET"}
-        </Button>
+        <ResetButtonWrapper>
+          <Button
+            variation={ButtonVariations.primary}
+            onClick={clearLocalStorage}
+            style={resetButtonStyle}
+          >
+            {"RESET"}
+          </Button>
+        </ResetButtonWrapper>
       </PageHeader>
       <PageDivider />
       <Bakcground>

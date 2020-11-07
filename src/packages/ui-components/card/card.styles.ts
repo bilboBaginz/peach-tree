@@ -15,7 +15,7 @@ export const CardWrapper = styled.div<CssVariants>`
   margin: ${({ margin }) => margin};
   background: ${Colors.white};
   position: relative;
-  min-width: 18.75em;
+  min-width: 21em;
   @media ${device.laptop} {
     margin-left: 1em;
     margin: 1.5em auto;

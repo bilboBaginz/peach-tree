@@ -17,6 +17,7 @@ import {
   ThinSpan,
   IconCell,
   InfoCell,
+  AmountCell,
 } from "./transaction-row.styles"
 
 export interface TransactionRowProps {
@@ -47,13 +48,15 @@ export const TransactionRow: React.FC<TransactionRowProps> = ({
               <ThinSpan>{transaction?.transaction?.type || ""}</ThinSpan>
             </FlexedText>
           </InfoCell>
-          <div style={{ display: "flex" }}>
-            <span>&minus;</span>
-            {getDeductedAmountDisplayed(
-              +transaction?.transaction?.amountCurrency?.amount,
-              transaction?.transaction?.amountCurrency?.currencyCode
-            )}
-          </div>
+          <AmountCell>
+            <div style={{ display: "flex" }}>
+              <span>&minus;</span>
+              {getDeductedAmountDisplayed(
+                +transaction?.transaction?.amountCurrency?.amount,
+                transaction?.transaction?.amountCurrency?.currencyCode
+              )}
+            </div>
+          </AmountCell>
         </CellsFlex>
       </CellsWrapper>
     </RowWrapper>

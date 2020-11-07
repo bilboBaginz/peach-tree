@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { device } from "../../../../../packages/breakpoints"
 import { Colors } from "../../../../../packages/theme"
 
 const borderWidth = 0.125
@@ -53,16 +54,22 @@ export const Icon = styled.img`
 `
 
 export const DateCell = styled.div`
-  flex-basis: 15%;
+  width: 15%;
+  min-width: 3.75em;
 `
 
 export const IconCell = styled.div`
-  flex-basis: 12%;
+  width: 15%;
+  @media ${device.laptop} {
+    display: none;
+  }
+`
+export const AmountCell = styled.div`
+  margin-left: auto;
+  order: 2;
 `
 
-export const InfoCell = styled.div`
-  flex-basis: 70%;
-`
+export const InfoCell = styled.div``
 
 export const ThinSpan = styled.span`
   font-weight: 300;

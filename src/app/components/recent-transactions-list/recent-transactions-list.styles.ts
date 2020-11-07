@@ -1,9 +1,13 @@
 import styled from "styled-components"
+import { device } from "../../../packages/breakpoints"
 import { Colors } from "../../../packages/theme"
 
 export const ListHeader = styled.div`
   display: flex;
   margin: 0 0 1em 0;
+  @media ${device.laptop} {
+    flex-direction: column;
+  }
 `
 
 export const SearchInputWrapper = styled.div`
