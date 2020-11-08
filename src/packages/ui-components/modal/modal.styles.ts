@@ -8,6 +8,7 @@ export const Shield = styled.div`
   height: 100%;
   width: 100%;
   background-color: rgba(58, 62, 70, 0.7);
+  z-index: 2;
 `
 
 export const ModalBody = styled.div`

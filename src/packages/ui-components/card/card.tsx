@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react"
+import { CSSObject } from "styled-components"
 import { CardBody, CardHeader, CardWrapper, Icon } from "./card.styles"
 
 interface CardProps {
@@ -10,6 +11,7 @@ interface CardProps {
   cardTitle: string
   iconSrc: string
   cardBodyPadding?: string
+  style?: CSSObject
 }
 
 export const Card: React.FC<CardProps> = ({
@@ -21,9 +23,15 @@ export const Card: React.FC<CardProps> = ({
   cardTitle,
   iconSrc,
   cardBodyPadding = "2em 1em",
+  style,
 }) => {
   return (
-    <CardWrapper height={cardHeight} width={cardWidth} margin={cardMargin}>
+    <CardWrapper
+      height={cardHeight}
+      width={cardWidth}
+      style={style}
+      margin={cardMargin}
+    >
       <CardHeader height={cardHeaderHeight}>
         <Icon src={iconSrc} />
         {cardTitle}

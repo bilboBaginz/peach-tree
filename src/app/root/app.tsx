@@ -117,12 +117,14 @@ export const App: React.FC = () => {
             <MakeTransferForm />
           </Card>
           <Card
+            cardHeight={59}
             cardHeaderHeight={CardsDisplayConfig.transactionsCardHeaderHeight}
             cardWidth={CardsDisplayConfig.transactionsCardWidth}
             cardMargin={"4em 6.5em 4em 1em"}
             cardTitle={"Recent Transactions"}
             iconSrc={"" /*"assets/icons/briefcase.png"*/}
             cardBodyPadding={"1em"}
+            style={{ overflow: "hidden", position: "relative" }}
           >
             <RecentTransactionsList />
           </Card>

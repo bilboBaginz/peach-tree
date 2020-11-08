@@ -1,4 +1,10 @@
-import React, { useContext, useMemo } from "react"
+import React, {
+  MutableRefObject,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react"
 import { v4 as uuidv4 } from "uuid"
 import { ArrowDirection } from "../../../packages/ui-components/arrows/arrows"
 import { Input } from "../../../packages/ui-components/input"
@@ -10,6 +16,7 @@ import {
   Span,
   SortingButtonsWrapper,
   noLeftBorder,
+  ListWrapper,
 } from "./recent-transactions-list.styles"
 import { Transaction } from "./recent-transactions-list-types"
 import { TransactionRow } from "./components/transaction-row"
@@ -99,8 +106,21 @@ export const RecentTransactionsList: React.FC = () => {
     state?.sortingCriteria,
   ])
 
+  const topOfTransactions = useRef() as MutableRefObject<HTMLDivElement>
+
+  const scrollToTop = () => {
+    if (topOfTransactions !== null) {
+      topOfTransactions?.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+      })
+    }
+  }
+
+  useEffect(scrollToTop, [state?.transactions])
+
   return (
-    <>
+    <ListWrapper>
       <ListHeader>
         <SearchInputWrapper>
           <Input
@@ -133,7 +153,10 @@ export const RecentTransactionsList: React.FC = () => {
           />
         </SortingButtonsWrapper>
       </ListHeader>
-      <ul style={{ listStyleType: "none", padding: 0 }}>{Transactions}</ul>
-    </>
+      <ul style={{ listStyleType: "none", padding: 0, marginRight: "1em" }}>
+        <div ref={topOfTransactions} />
+        {Transactions}
+      </ul>
+    </ListWrapper>
   )
 }

@@ -69,7 +69,12 @@ export const AmountCell = styled.div`
   order: 2;
 `
 
-export const InfoCell = styled.div``
+export const InfoCell = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 300px;
+`
 
 export const ThinSpan = styled.span`
   font-weight: 300;

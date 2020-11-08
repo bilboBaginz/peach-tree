@@ -2,8 +2,21 @@ import styled from "styled-components"
 import { device } from "../../../packages/breakpoints"
 import { Colors } from "../../../packages/theme"
 
+export const ListWrapper = styled.div`
+  position: absolute;
+  top: 5.25em;
+  bottom: 0;
+  left: 1.188em;
+  right: -1em;
+  overflow-y: scroll;
+`
+
 export const ListHeader = styled.div`
   display: flex;
+  position: sticky;
+  z-index: 1;
+  background: ${Colors.white};
+  top: 0;
   margin: 0 0 1em 0;
   @media ${device.laptop} {
     flex-direction: column;
@@ -25,7 +38,7 @@ export const customInputBorder = {
 export const SortingButtonsWrapper = styled.div`
   display: flex;
   height: 2.2em;
-  margin: 0 0 1em 0;
+  margin: 0 1em 1em 0;
 `
 export const noLeftBorder = {
   borderLeft: 0,
