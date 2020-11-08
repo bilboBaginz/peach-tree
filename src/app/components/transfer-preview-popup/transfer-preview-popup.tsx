@@ -22,33 +22,33 @@ export const TransferPreviewPopup: React.FC<TransferPreviewPopup> = ({
 }) => {
   const { dispatch, state } = useContext(GlobalStateContext)
 
-  // create new transaction
-  let newTransaction: Transaction
-  let newMerchant: SavedMerchant
-
-  const savedMerchant = checkIfMerchangeExists(
-    state?.transferAccount,
-    state?.merchantsInventory
-  )
-
-  if (savedMerchant) {
-    newTransaction = createTransaction(savedMerchant, state?.transferAmount)
-  } else {
-    newMerchant = createNewMerchant(state?.transferAccount)
-    dispatch({
-      type: ActionTypes.ON_NEW_MERCHANT_CREATED,
-      merchantsInventory: [...state?.merchantsInventory, newMerchant],
-    })
-    newTransaction = createTransaction(newMerchant, state?.transferAmount)
-  }
-
   const onTransfer = () => {
+    // create new transaction
+    let newTransaction: Transaction
+    let newMerchant: SavedMerchant
+
+    const savedMerchant = checkIfMerchangeExists(
+      state?.transferAccount,
+      state?.merchantsInventory
+    )
+
+    if (savedMerchant) {
+      newTransaction = createTransaction(savedMerchant, state?.transferAmount)
+    } else {
+      newMerchant = createNewMerchant(state?.transferAccount)
+      dispatch({
+        type: ActionTypes.ON_NEW_MERCHANT_CREATED,
+        merchantsInventory: [...state?.merchantsInventory, newMerchant],
+      })
+      newTransaction = createTransaction(newMerchant, state?.transferAmount)
+    }
     dispatch({
       type: ActionTypes.USER_CONFIRMS_TRANSACTION,
       transactions: [...state?.transactions, newTransaction],
       balance: state?.balance - newTransaction.transaction.amountCurrency.amount,
     })
   }
+
   return (
     <>
       <PreviewFlex>

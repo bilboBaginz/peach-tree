@@ -82,12 +82,6 @@ export const App: React.FC = () => {
     updateBalance(state?.balance)
   }, [state?.balance])
 
-  const onUserHidesPreview = () => {
-    dispatch({
-      type: ActionTypes.USER_HIDES_PREVIEW,
-    })
-  }
-
   return (
     <>
       <GlobalStyle />
@@ -130,7 +124,7 @@ export const App: React.FC = () => {
           </Card>
         </CardsContainer>
       </Bakcground>
-      <Modal display={state?.showPreview} toggle={onUserHidesPreview}>
+      <Modal display={state?.showPreview}>
         <TransferPreviewPopup
           amount={state?.transferAmount}
           account={state?.transferAccount}

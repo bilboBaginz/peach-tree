@@ -10,7 +10,6 @@ export enum ActionTypes {
   // user actions in make a transfer form
   USER_UPDATES_BENEFICIARY_FIELD = "USER_UPDATES_BENEFICIARY_FIELD",
   USER_UPDATES_AMOUNT = "USER_UPDATES_AMOUNT",
-  USER_HIDES_PREVIEW = "USER_HIDES_PREVIEW",
   // user action in preview popup
   USER_CONFIRMS_TRANSACTION = "USER_CONFIRMS_TRANSACTION",
   // application actions
@@ -60,11 +59,6 @@ export const globalStateReducer = (
         ...state,
         transferAmount: action.transferAmount || "",
         missingAmount: false,
-      }
-    case ActionTypes.USER_HIDES_PREVIEW:
-      return {
-        ...state,
-        showPreview: false,
       }
     // user action in preview popup
     case ActionTypes.USER_CONFIRMS_TRANSACTION:
