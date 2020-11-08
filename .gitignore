@@ -3,3 +3,5 @@ package-lock.json
 build/assets/
 build/bundle.js
 build/bundle.js.LICENSE.txt
+coverage
+.nyc_output

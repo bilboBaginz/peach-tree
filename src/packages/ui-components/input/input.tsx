@@ -48,16 +48,16 @@ export const Input: React.FC<CustomInputProps> = ({
 
   return (
     <FieldWrapper>
-      {label && (
-        <Label>
-          {label}
+      {
+        <>
+          {label && <Label>{label}</Label>}
           <span style={{ color: Colors.danger, fontWeight: 300 }}>
             {empty === true && " Required*"}
             {invalidNumber === true && " Invalid"}
             {customError && customError}
           </span>
-        </Label>
-      )}
+        </>
+      }
       <InputWrapper
         aria-label={label}
         aria-required="true"

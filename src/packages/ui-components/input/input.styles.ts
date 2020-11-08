@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { device } from "../../breakpoints"
 import { Colors } from "../../theme"
 
 interface CssVariants {
@@ -47,5 +48,8 @@ export const SearchButton = styled.div`
   cursor: pointer;
   :hover {
     color: ${Colors.peach};
+  }
+  @media ${device.tablet} {
+    display: none;
   }
 `
