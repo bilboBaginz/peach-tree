@@ -34,7 +34,7 @@ npm run test # prompts a new browser window (chrome by default) and offers dashb
 
 ### src/app
 
-  * `root`: Since React components communication is unidirectional, this component is the main parent of all the UI componentts as well as the playing the role of the context provider that saves/updates the state and propagates it down to all children. (same pattern as elm/redux but with native react hooks `useContext` and `useReducer`)
+  * `root`: Since React components communication is unidirectional, this component is the main parent of all the UI componentts as well as context provider to all its children. (same pattern as elm/redux but with native react hooks `useContext` and `useReducer`)
   * `components`: Contains the 3 UI comopnents of our app, the money transfer funcionality `make-transfer-form`, the transactions list `recent-transactions-list` and `transfer-preview-popup`, if a component is complex enough it might have children of its own in a recursive manner (hence the term React tree)
 
 ### src/packages:
@@ -42,7 +42,7 @@ npm run test # prompts a new browser window (chrome by default) and offers dashb
   * `breakpoints`: One place to store all the media queries used
   * `theme`: One place to store all the colors used with descriptive names
   * `ui-components`: Reusable and configurable UI elements such as input, button..
-  * `hooks`: Reusable React hooks (for this project just the one `use-local-storage` that absracts local storage set and get).
+  * `hooks`: Reusable React hooks (for this project just the one `use-local-storage`).
   * `i18n`: Tanslations and i18n boilerplate.
 
 ### src/assets:
