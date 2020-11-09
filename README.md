@@ -47,7 +47,3 @@ npm run test # prompts a new browser window (chrome by default) and offers dashb
 ### src/assets:
 
   * Images needed for the app, copied by webpack copy plugin to `build` foder during build process.
-  
-## Disclaimer
-
-* For the purpose of focusing and dedicating my time to frontend requirements, I have not implemented a backend for this assignemt and used `localStorage` to persist data on page reload, a `Reset` button is added in the page header to restore the app to initial state provided by the `transactions.json` mock file.
