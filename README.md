@@ -4,19 +4,19 @@
 
 * **React.js**: Used to write the application logic, React is the main technology I have been focusing on during the last two years and even though it is not a framework like angular, it is possible to build a framework around it that allows to build scalable SPA's. 
 
-* **Typescript**: React by default uses javascript, it does not offer strict typing for components/functions/variables, luckily it is quiet straightforward to set up a react app to use typescript and get the benefits of typing our code.
+* **Typescript**: React by default uses javascript, it does not offer strict typing for components/functions/data structures, it is quiet straightforward to set up a react app to use typescript and get the benefits of typing our code.
 
-* **Webpack**: Webpack is used for building the production files mainly the `bundle.js` which is inserted in the main index.html page. Also using the webpack dev server in development mode with HMR is quiet neat and time saving.
+* **Webpack**: Webpack is used for building the production files mainly the `bundle.js` which is inserted in the main index.html page. Also using the webpack dev server in development mode with HMR.
 
 * **Babel**: Transpiler, all `tsx` and `ts` code goes through its loader.
 
 * **eslint**: Eslint is used as main linter for this project set up with typescript support.
 
-* **prettier**: Used to format code (indent, line length..)
+* **prettier**: Used to format code.
 
-* **styled-components**: A javascript library that allows to write css withouth having to add css files or add special css loaders in webpack, it does not offer ready to use compnents, all UI elements used in this project have css built from scratch.
+* **styled-components**: A javascript library that allows to write css as React components, it does not offer ready to use compnents, all UI elements used in this project have css built from scratch.
 
-* **cypress**: Used to add integration/e2e tests for the application and helps focus on testing the application from a user perspective.
+* **cypress**: Used to add integration/e2e tests for the application.
 
 ## Build
 
@@ -43,6 +43,7 @@ npm run test # prompts a new browser window (chrome by default) and offers dashb
   * `theme`: One place to store all the colors used with descriptive names
   * `ui-components`: Reusable and configurable UI elements such as input, button..
   * `hooks`: Reusable React hooks (for this project just the one `use-local-storage` that absracts local storage set and get).
+  * `i18n`: Tanslations and i18n boilerplate.
 
 ### src/assets:
 
