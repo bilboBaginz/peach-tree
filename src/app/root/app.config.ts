@@ -2,6 +2,7 @@ export enum CardsDisplayConfig {
   transferCardHeight = 25.625, // em
   transferCardHeaderHeight = 2.5, // em
   transactionsCardHeaderHeight = 3, // em
+  transactionsCardHeight = 59, // em
   transferCardWidth = 28, // %
   transactionsCardWidth = 100 - CardsDisplayConfig.transferCardWidth, // %
 }

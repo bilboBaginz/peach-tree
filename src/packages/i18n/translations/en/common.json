@@ -1,0 +1,26 @@
+{
+    "card": {
+        "transfer_card_title": "Make a Transfer",
+        "transactions_card_title": "Recent Transactions"
+    },
+    "input": {
+        "from_account": "FROM ACCOUNT",
+        "to_account": "TO ACCOUNT",
+        "amount": "AMOUNT"
+    },
+    "placeholder": {
+        "free_checking": "Free checking",
+        "beneficiary_account": "Beneficiary account",
+        "keyword_search": "Search by typing..."
+    },
+    "button" : {
+        "transfer": "TRANSFER",
+        "submit": "SUBMIT",
+        "date": "DATE",
+        "amount": "AMOUNT",
+        "beneficiary": "BENEFICIARY"
+    },
+    "span": {
+        "sort_by": "Sort by"
+    }
+}

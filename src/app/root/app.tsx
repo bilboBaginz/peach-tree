@@ -1,4 +1,5 @@
 import React, { useCallback, useContext, useEffect, useMemo } from "react"
+import { useTranslation } from "react-i18next"
 import {
   GlobalStyle,
   Logo,
@@ -22,6 +23,8 @@ import { Modal } from "../../packages/ui-components/modal"
 import { TransferPreviewPopup } from "../components/transfer-preview-popup"
 
 export const App: React.FC = () => {
+  const { t } = useTranslation("common")
+
   const { state, dispatch } = useContext(GlobalStateContext)
 
   const [storedMerchants, updateMerchants] = useLocalStorage("savedMerchants", [])
@@ -113,17 +116,17 @@ export const App: React.FC = () => {
             cardHeaderHeight={CardsDisplayConfig.transferCardHeaderHeight}
             cardWidth={CardsDisplayConfig.transferCardWidth}
             cardMargin={"4em 1em 4em 6.5em"}
-            cardTitle={"Make a Transfer"}
+            cardTitle={t("card.transfer_card_title")}
             iconSrc={"" /*"assets/icons/arrows.png"*/}
           >
             <MakeTransferForm />
           </Card>
           <Card
-            cardHeight={59}
+            cardHeight={CardsDisplayConfig.transactionsCardHeight}
             cardHeaderHeight={CardsDisplayConfig.transactionsCardHeaderHeight}
             cardWidth={CardsDisplayConfig.transactionsCardWidth}
             cardMargin={"4em 6.5em 4em 1em"}
-            cardTitle={"Recent Transactions"}
+            cardTitle={t("card.transactions_card_title")}
             iconSrc={"" /*"assets/icons/briefcase.png"*/}
             cardBodyPadding={"0"}
             style={{ overflow: "hidden", position: "relative" }}

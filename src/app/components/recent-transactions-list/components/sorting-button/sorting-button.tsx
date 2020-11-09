@@ -16,6 +16,7 @@ import {
 } from "./sorting-button.styles"
 
 interface SortingButtonProps {
+  name: string
   criteria: Criteria
   direction?: ArrowDirection | null
   style?: CSSObject
@@ -23,6 +24,7 @@ interface SortingButtonProps {
 }
 
 export const SortingButton: React.FC<SortingButtonProps> = ({
+  name,
   criteria,
   direction = null,
   style,
@@ -38,7 +40,7 @@ export const SortingButton: React.FC<SortingButtonProps> = ({
       style={style}
     >
       <SortingButtonFlex>
-        {criteria}
+        {name}
         <Arrows
           style={direction === ArrowDirection.up ? ArrowUpStyle : ArrowDownStyle}
           direction={direction || null}

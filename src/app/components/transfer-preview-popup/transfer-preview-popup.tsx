@@ -1,4 +1,5 @@
 import React, { useContext } from "react"
+import { useTranslation } from "react-i18next"
 import { Button, ButtonVariations } from "../../../packages/ui-components/button"
 import { SavedMerchant } from "../../root/app.config"
 import { GlobalStateContext } from "../../root/globalState/context"
@@ -21,7 +22,7 @@ export const TransferPreviewPopup: React.FC<TransferPreviewPopup> = ({
   account,
 }) => {
   const { dispatch, state } = useContext(GlobalStateContext)
-
+  const { t } = useTranslation("common")
   const onTransfer = () => {
     // create new transaction
     let newTransaction: Transaction
@@ -59,7 +60,7 @@ export const TransferPreviewPopup: React.FC<TransferPreviewPopup> = ({
           variation={ButtonVariations.primary}
           onClick={onTransfer}
         >
-          {"TRANSFER"}
+          {t("button.transfer")}
         </Button>
       </PreviewFlex>
     </>

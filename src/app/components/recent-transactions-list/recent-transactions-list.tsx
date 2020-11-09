@@ -1,4 +1,5 @@
 import React, { useCallback, useContext, useMemo } from "react"
+import { useTranslation } from "react-i18next"
 import { v4 as uuidv4 } from "uuid"
 import { ArrowDirection } from "../../../packages/ui-components/arrows/arrows"
 import { Input } from "../../../packages/ui-components/input"
@@ -20,7 +21,7 @@ import { compareFunctionMapper } from "./recent-transactions-list.helpers"
 
 export const RecentTransactionsList: React.FC = () => {
   const { state, dispatch } = useContext(GlobalStateContext)
-
+  const { t } = useTranslation("common")
   const handleKeywordSearchChange = useCallback(
     (e: { target: { value: string } }) => {
       const searchKeyword = e.target.value
@@ -114,27 +115,30 @@ export const RecentTransactionsList: React.FC = () => {
         <SearchInputWrapper>
           <Input
             style={customInputBorder}
-            placeholder={"Search by typing..."}
+            placeholder={t("placeholder.keyword_search")}
             onChange={handleKeywordSearchChange}
             value={state?.searchKeyword}
             searchButton={true}
             handleOnClickClear={clearSearchKeyWord}
           />
         </SearchInputWrapper>
-        <Span>{"Sort by"}</Span>
+        <Span>{t("span.sort_by")}</Span>
         <SortingButtonsWrapper>
           <SortingButton
+            name={t("button.date")}
             criteria={"DATE"}
             direction={getDirection("DATE")}
             onSortingClick={handleSorting}
           />
           <SortingButton
+            name={t("button.beneficiary")}
             criteria={"BENEFICIARY"}
             direction={getDirection("BENEFICIARY")}
             style={noLeftBorder}
             onSortingClick={handleSorting}
           />
           <SortingButton
+            name={t("button.amount")}
             criteria={"AMOUNT"}
             direction={getDirection("AMOUNT")}
             style={noLeftBorder}

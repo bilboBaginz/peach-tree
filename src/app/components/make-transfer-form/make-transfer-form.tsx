@@ -1,4 +1,5 @@
 import React, { useCallback, useContext, useMemo } from "react"
+import { useTranslation } from "react-i18next"
 import { Button, ButtonVariations } from "../../../packages/ui-components/button"
 import { Input } from "../../../packages/ui-components/input"
 import { GlobalStateContext } from "../../root/globalState/context"
@@ -13,6 +14,7 @@ import {
 
 export const MakeTransferForm: React.FC = () => {
   const { state, dispatch } = useContext(GlobalStateContext)
+  const { t } = useTranslation("common")
 
   const handleBeneficiaryUpdate = useCallback(
     (e: { target: { value: string } }) => {
@@ -63,8 +65,10 @@ export const MakeTransferForm: React.FC = () => {
     () => (
       <form>
         <Input
-          label={"FROM ACCOUNT"}
-          placeholder={`Free checking(4692) - €${state?.balance}`}
+          label={t("input.from_account")}
+          placeholder={`${t("placeholder.free_checking")}(4692) - €${
+            state?.balance
+          }`}
           disabled={true}
           customError={
             isOverDraftLimitReached(state?.balance, state?.transferAmount)
@@ -73,14 +77,14 @@ export const MakeTransferForm: React.FC = () => {
           }
         />
         <Input
-          label={"TO ACCOUNT"}
-          placeholder={"Beneficiary account"}
+          label={t("input.to_account")}
+          placeholder={t("placeholder.beneficiary_account")}
           onChange={handleBeneficiaryUpdate}
           empty={state?.missingAccount}
           value={state?.transferAccount}
         />
         <Input
-          label={"AMOUNT"}
+          label={t("input.amount")}
           placeholder={"€0.00"}
           isNumber={true}
           onChange={handleAmountUpdate}
@@ -104,7 +108,7 @@ export const MakeTransferForm: React.FC = () => {
     () => (
       <ButtonContainer>
         <Button variation={ButtonVariations.primary} onClick={handleSubmitClick}>
-          {"SUBMIT"}
+          {t("button.submit")}
         </Button>
       </ButtonContainer>
     ),
