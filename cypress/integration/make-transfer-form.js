@@ -8,7 +8,6 @@ const testSuiteMakeTransfer = [
       }),
     act: (cy) => {
       cy.get("button").contains("SUBMIT").click()
-      window.localStorage.setItem("balance", 5824.76)
     },
     assert: (cy) => {
       cy.get("button").should("contain", "TRANSFER")
