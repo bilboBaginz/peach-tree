@@ -1,11 +1,4 @@
-import React, {
-  MutableRefObject,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-} from "react"
+import React, { useCallback, useContext, useMemo } from "react"
 import { v4 as uuidv4 } from "uuid"
 import { ArrowDirection } from "../../../packages/ui-components/arrows/arrows"
 import { Input } from "../../../packages/ui-components/input"
@@ -152,24 +145,11 @@ export const RecentTransactionsList: React.FC = () => {
     ),
     [state?.searchKeyword, handleSorting, getDirection]
   )
-  const topOfTransactions = useRef() as MutableRefObject<HTMLDivElement>
-
-  const scrollToTop = useCallback(() => {
-    if (topOfTransactions !== null) {
-      topOfTransactions?.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "end",
-      })
-    }
-  }, [topOfTransactions])
-
-  useEffect(scrollToTop, [state?.transactions])
 
   return (
     <ListWrapper>
       {ListHeaderMemorised}
-      <ul style={{ listStyleType: "none", padding: 0, marginRight: "1em" }}>
-        <div ref={topOfTransactions} />
+      <ul style={{ listStyleType: "none", padding: "0 1em 0 1em" }}>
         {TransactionsMemorised}
       </ul>
     </ListWrapper>

@@ -7,26 +7,18 @@ export const ListWrapper = styled.div`
   top: 5.25em;
   bottom: 0;
   overflow-y: scroll;
-  width: 98.4%;
+  width: 100%;
   ::-webkit-scrollbar {
     display: none;
   }
   scrollbar-width: none;
-  @media ${device.laptop} {
-    width: 96.4%;
-  }
-  @media ${device.tablet} {
-    width: 94.4%;
-  }
-  @media ${device.mobileL} {
-    width: 92.4%;
-  }
 `
 
 export const ListHeader = styled.div`
   display: flex;
   position: sticky;
   z-index: 1;
+  padding: 0 1em 0 1em;
   background: ${Colors.white};
   top: 0;
   margin: 0 0 1em 0;
@@ -50,7 +42,7 @@ export const customInputBorder = {
 export const SortingButtonsWrapper = styled.div`
   display: flex;
   height: 2.2em;
-  margin: 0 1em 1em 0;
+  margin: 0 0em 1em 0;
 `
 export const noLeftBorder = {
   borderLeft: 0,

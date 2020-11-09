@@ -125,7 +125,7 @@ export const App: React.FC = () => {
             cardMargin={"4em 6.5em 4em 1em"}
             cardTitle={"Recent Transactions"}
             iconSrc={"" /*"assets/icons/briefcase.png"*/}
-            cardBodyPadding={"1em"}
+            cardBodyPadding={"0"}
             style={{ overflow: "hidden", position: "relative" }}
           >
             <RecentTransactionsList />
