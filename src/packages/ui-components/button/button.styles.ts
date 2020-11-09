@@ -9,6 +9,7 @@ interface CssVariants {
 export const ButtonWrapper = styled.button<CssVariants>`
   border: none;
   outline: none;
+  margin: none;
   cursor: pointer;
 
   ${({ variation }) =>
