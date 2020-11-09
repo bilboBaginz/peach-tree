@@ -8,7 +8,6 @@ export const GlobalStyle = createGlobalStyle`
     min-width: 21em;
     font-family: 'Kanit', sans-serif;
     input, textarea, select { font-family:inherit; }
-    overflow-y: scroll;
 `
 
 export const PageHeader = styled.div`

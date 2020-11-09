@@ -6,9 +6,21 @@ export const ListWrapper = styled.div`
   position: absolute;
   top: 5.25em;
   bottom: 0;
-  left: 1.188em;
-  right: -1em;
   overflow-y: scroll;
+  width: 98.4%;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
+  @media ${device.laptop} {
+    width: 96.4%;
+  }
+  @media ${device.tablet} {
+    width: 94.4%;
+  }
+  @media ${device.mobileL} {
+    width: 92.4%;
+  }
 `
 
 export const ListHeader = styled.div`
