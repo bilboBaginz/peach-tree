@@ -5,7 +5,7 @@ export const amountIsNotValid = (amount: string): boolean => Number.isNaN(+amoun
 export const amountIsTooLarge = (amount: string): boolean => +amount > TransactionCap
 
 export const fieldsAreMissing = (amount: string, account: string): boolean =>
-  amount === "" || account === ""
+  amount.trim() === "" || account.trim() === ""
 
 export const isOverDraftLimitReached = (balance: number, amount: string): boolean =>
   balance - +amount < MinimumBalance
