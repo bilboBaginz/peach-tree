@@ -1,5 +1,6 @@
 import React, {
   MutableRefObject,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -27,44 +28,52 @@ import { compareFunctionMapper } from "./recent-transactions-list.helpers"
 export const RecentTransactionsList: React.FC = () => {
   const { state, dispatch } = useContext(GlobalStateContext)
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleKeywordSearchChange = (e: { target: { value: any } }) => {
-    const searchKeyword = e.target.value
-    dispatch({
-      type: ActionTypes.USER_UPDATES_SARCH_KEYOWORD,
-      searchKeyword,
-    })
-  }
-
-  const handleSorting = (sortingCriteria: Criteria) => {
-    if (sortingCriteria === state?.sortingCriteria) {
+  const handleKeywordSearchChange = useCallback(
+    (e: { target: { value: string } }) => {
+      const searchKeyword = e.target.value
       dispatch({
-        type: ActionTypes.USER_CHANGES_SORTING_DIRECTION,
+        type: ActionTypes.USER_UPDATES_SARCH_KEYOWORD,
+        searchKeyword,
       })
-    } else {
-      dispatch({
-        type: ActionTypes.USER_CHANGES_SORTING_CRITERIA,
-        sortingCriteria,
-      })
-    }
-  }
+    },
+    [dispatch]
+  )
 
-  const getDirection = (criteria: Criteria) => {
-    if (state?.sortingCriteria !== criteria) {
-      return null
-    }
-    return state?.sortingDirection === "ASC"
-      ? ArrowDirection.up
-      : ArrowDirection.down
-  }
+  const handleSorting = useCallback(
+    (sortingCriteria: Criteria) => {
+      if (sortingCriteria === state?.sortingCriteria) {
+        dispatch({
+          type: ActionTypes.USER_CHANGES_SORTING_DIRECTION,
+        })
+      } else {
+        dispatch({
+          type: ActionTypes.USER_CHANGES_SORTING_CRITERIA,
+          sortingCriteria,
+        })
+      }
+    },
+    [state?.sortingCriteria]
+  )
 
-  const clearSearchKeyWord = () => {
+  const getDirection = useCallback(
+    (criteria: Criteria) => {
+      if (state?.sortingCriteria !== criteria) {
+        return null
+      }
+      return state?.sortingDirection === "ASC"
+        ? ArrowDirection.up
+        : ArrowDirection.down
+    },
+    [state?.sortingCriteria, state?.sortingDirection]
+  )
+
+  const clearSearchKeyWord = useCallback(() => {
     dispatch({
       type: ActionTypes.USER_CLEARS_SEARCH_KEYWORD,
     })
-  }
+  }, [dispatch])
 
-  const Transactions = useMemo(() => {
+  const TransactionsMemorised = useMemo(() => {
     const searchKeyword = state?.searchKeyword.toLowerCase()
 
     // filter list
@@ -106,21 +115,8 @@ export const RecentTransactionsList: React.FC = () => {
     state?.sortingCriteria,
   ])
 
-  const topOfTransactions = useRef() as MutableRefObject<HTMLDivElement>
-
-  const scrollToTop = () => {
-    if (topOfTransactions !== null) {
-      topOfTransactions?.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "end",
-      })
-    }
-  }
-
-  useEffect(scrollToTop, [state?.transactions])
-
-  return (
-    <ListWrapper>
+  const ListHeaderMemorised = useMemo(
+    () => (
       <ListHeader>
         <SearchInputWrapper>
           <Input
@@ -153,9 +149,28 @@ export const RecentTransactionsList: React.FC = () => {
           />
         </SortingButtonsWrapper>
       </ListHeader>
+    ),
+    [state?.searchKeyword, handleSorting, getDirection]
+  )
+  const topOfTransactions = useRef() as MutableRefObject<HTMLDivElement>
+
+  const scrollToTop = useCallback(() => {
+    if (topOfTransactions !== null) {
+      topOfTransactions?.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+      })
+    }
+  }, [topOfTransactions])
+
+  useEffect(scrollToTop, [state?.transactions])
+
+  return (
+    <ListWrapper>
+      {ListHeaderMemorised}
       <ul style={{ listStyleType: "none", padding: 0, marginRight: "1em" }}>
         <div ref={topOfTransactions} />
-        {Transactions}
+        {TransactionsMemorised}
       </ul>
     </ListWrapper>
   )

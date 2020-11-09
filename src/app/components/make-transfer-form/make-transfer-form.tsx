@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useCallback, useContext, useMemo } from "react"
 import { Button, ButtonVariations } from "../../../packages/ui-components/button"
 import { Input } from "../../../packages/ui-components/input"
 import { GlobalStateContext } from "../../root/globalState/context"
@@ -14,23 +14,29 @@ import {
 export const MakeTransferForm: React.FC = () => {
   const { state, dispatch } = useContext(GlobalStateContext)
 
-  const handleBeneficiaryUpdate = (e: { target: { value: string } }) => {
-    const transferAccount = e.target.value
-    dispatch({
-      type: ActionTypes.USER_UPDATES_BENEFICIARY_FIELD,
-      transferAccount,
-    })
-  }
+  const handleBeneficiaryUpdate = useCallback(
+    (e: { target: { value: string } }) => {
+      const transferAccount = e.target.value
+      dispatch({
+        type: ActionTypes.USER_UPDATES_BENEFICIARY_FIELD,
+        transferAccount,
+      })
+    },
+    [dispatch]
+  )
 
-  const handleAmountUpdate = (e: { target: { value: string } }) => {
-    const transferAmount = e.target.value
-    dispatch({
-      type: ActionTypes.USER_UPDATES_AMOUNT,
-      transferAmount: transferAmount,
-    })
-  }
+  const handleAmountUpdate = useCallback(
+    (e: { target: { value: string } }) => {
+      const transferAmount = e.target.value
+      dispatch({
+        type: ActionTypes.USER_UPDATES_AMOUNT,
+        transferAmount: transferAmount,
+      })
+    },
+    [dispatch]
+  )
 
-  const handleSubmitClick = () => {
+  const handleSubmitClick = useCallback(() => {
     // validate form
     if (
       amountIsNotValid(state?.transferAmount) ||
@@ -51,10 +57,10 @@ export const MakeTransferForm: React.FC = () => {
     dispatch({
       type: ActionTypes.ON_FORM_VALID,
     })
-  }
+  }, [state?.transferAmount, state?.balance, state?.transferAccount, dispatch])
 
-  return (
-    <>
+  const FormMemorised = useMemo(
+    () => (
       <form>
         <Input
           label={"FROM ACCOUNT"}
@@ -84,11 +90,31 @@ export const MakeTransferForm: React.FC = () => {
           customError={amountIsTooLarge(state?.transferAmount) ? " Too large" : ""}
         />
       </form>
+    ),
+    [
+      state?.balance,
+      state?.transferAmount,
+      state?.transferAccount,
+      state?.missingAmount,
+      state?.missingAccount,
+    ]
+  )
+
+  const ButtonMemorised = useMemo(
+    () => (
       <ButtonContainer>
         <Button variation={ButtonVariations.primary} onClick={handleSubmitClick}>
           {"SUBMIT"}
         </Button>
       </ButtonContainer>
+    ),
+    [handleSubmitClick]
+  )
+
+  return (
+    <>
+      {FormMemorised}
+      {ButtonMemorised}
     </>
   )
 }

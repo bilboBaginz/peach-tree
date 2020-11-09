@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+import React, { useCallback, useContext, useEffect, useMemo } from "react"
 import {
   GlobalStyle,
   Logo,
@@ -32,10 +32,11 @@ export const App: React.FC = () => {
   )
   const [storedBalance, updateBalance] = useLocalStorage("balance", 0)
 
-  const clearLocalStorage = () => {
+  const clearLocalStorage = useCallback(() => {
     updateTransactions([])
     updateBalance(InitialBalance)
-  }
+    updateMerchants([])
+  }, [])
 
   useEffect(() => {
     if (storedMerchants?.length === 0) {
@@ -82,9 +83,8 @@ export const App: React.FC = () => {
     updateBalance(state?.balance)
   }, [state?.balance])
 
-  return (
-    <>
-      <GlobalStyle />
+  const HeaderMemorised = useMemo(
+    () => (
       <PageHeader>
         <Logo src={"assets/logo.jpg"} />
         <ResetButtonWrapper>
@@ -97,6 +97,14 @@ export const App: React.FC = () => {
           </Button>
         </ResetButtonWrapper>
       </PageHeader>
+    ),
+    [clearLocalStorage]
+  )
+
+  return (
+    <>
+      <GlobalStyle />
+      {HeaderMemorised}
       <PageDivider />
       <Bakcground>
         <CardsContainer>
