@@ -21,6 +21,8 @@
         "beneficiary": "BENEFICIARY"
     },
     "span": {
-        "sort_by": "Sort by"
+        "sort_by": "Sort by",
+        "to_account": "TO ACCOUNT",
+        "amount": "AMOUNT"
     }
 }

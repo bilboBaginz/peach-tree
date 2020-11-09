@@ -53,8 +53,8 @@ export const TransferPreviewPopup: React.FC<TransferPreviewPopup> = ({
   return (
     <>
       <PreviewFlex>
-        <span>{`TO ACCOUNT: ${account}`}</span>
-        <span>{`AMOUNT: €${amount}`}</span>
+        <span>{`${t("span.to_account")}: ${account}`}</span>
+        <span>{`${t("span.amount")}: €${amount}`}</span>
         <Button
           style={{ marginTop: "1em" }}
           variation={ButtonVariations.primary}
